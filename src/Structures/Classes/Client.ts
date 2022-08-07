@@ -14,84 +14,96 @@ const IBox = new Box();
 const BoxContents = await IBox.createBox();
 
 export class BaseClient extends Client {
-	public commands	: Collection<string, Command>;
-	public events	: Collection<string, Event>;
-	public config	: Config;
+    public commands: Collection<string, Command>;
+    public events: Collection<string, Event>;
+    public config: Config;
 
-	private boxContents = BoxContents;
+    private boxContents = BoxContents;
 
-	constructor() {
-		super({
-			intents: [Guilds, GuildMembers, GuildMessages],
-			partials: [User, Message, GuildMember, ThreadMember],
-		});
+    constructor() {
+        super({
+            intents: [Guilds, GuildMembers, GuildMessages],
+            partials: [User, Message, GuildMember, ThreadMember],
 
-		this.commands = new Collection();
-		this.events = new Collection();
-		this.config = ClientConfig;
-	}
+        });
 
-	public async start() {
-		// Login
-		await this.login(this.config.TOKEN);
-		await IBox.addItem(this.boxContents, {
-			name: `${chalk.bold.hex('#5865F2')('Discord.js')}`,
-			value: `v${version}\n`,
-		});
+        this.commands = new Collection();
+        this.events = new Collection();
+        this.config = ClientConfig;
 
-		// Modules
-		await this.registerModules();
+    }
 
-		// Database
-		await this.connectMongoDB();
+    public async start() {
+        // Login
+        await this.login(this.config.TOKEN);
+        await IBox.addItem(this.boxContents, {
+            name: `${chalk.bold.hex('#5865F2')('Discord.js')}`,
+            value: `v${version}\n`,
 
-		await IBox.showBox(this.boxContents, {
-			borderColor: 'white',
-			borderStyle: 'round',
-			dimBorder: true,
-			padding: 1,
-			margin: 1,
-		});
+        });
 
-	}
+        // Modules
+        await this.registerModules();
 
-	private async registerModules() {
-		const { loadEvents, loadCommands } = new Handler();
+        // Database
+        await this.connectMongoDB();
 
-		await loadEvents(this)
-			.then(() => {
-				IBox.addItem(this.boxContents, {
-					name: `${chalk.yellow('Events')}`,
-					value: 'OK',
-				});
-			})
-			.catch((err) => {
-				IBox.addItem(this.boxContents, {
-					name: `${chalk.bold.red('Events')}`,
-					value: `${err}`,
-				});
-			});
+        await IBox.showBox(this.boxContents, {
+            borderColor: 'white',
+            borderStyle: 'round',
+            dimBorder: true,
+            padding: 1,
+            margin: 1,
 
-		await loadCommands(this)
-			.then(() => {
-				IBox.addItem(this.boxContents, {
-					name: `${chalk.yellow('Commands')}`,
-					value: 'OK',
-				});
-			})
-			.catch((err) => {
-				IBox.addItem(this.boxContents, {
-					name: `${chalk.red('Commands')}`,
-					value: `${err}`,
-				});
-			});
-	}
+        });
 
-	private async connectMongoDB() {
-		await mongoose.connect(this.config.Database.MongoDB);
-		IBox.addItem(this.boxContents, {
-			name: `${chalk.yellow('Database')}`,
-			value: 'OK',
-		});
-	}
+    }
+
+    private async registerModules() {
+        const { loadEvents, loadCommands } = new Handler();
+
+        await loadEvents(this).then(() => {
+            IBox.addItem(this.boxContents, {
+                name: `${chalk.yellow('Events')}`,
+                value: 'OK',
+
+            });
+
+        }).catch((err) => {
+            IBox.addItem(this.boxContents, {
+                name: `${chalk.bold.red('Events')}`,
+                value: `${err}`,
+
+            });
+
+        });
+
+        await loadCommands(this).then(() => {
+            IBox.addItem(this.boxContents, {
+                name: `${chalk.yellow('Commands')}`,
+                value: 'OK',
+
+            });
+
+        }).catch((err) => {
+            IBox.addItem(this.boxContents, {
+                name: `${chalk.red('Commands')}`,
+                value: `${err}`,
+
+            });
+
+        });
+
+    }
+
+    private async connectMongoDB() {
+        await mongoose.connect(this.config.Database.MongoDB);
+        IBox.addItem(this.boxContents, {
+            name: `${chalk.yellow('Database')}`,
+            value: 'OK',
+
+        });
+
+    }
+
 }

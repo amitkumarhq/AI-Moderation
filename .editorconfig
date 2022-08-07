@@ -1,0 +1,14 @@
+root = true
+
+# Encoding
+charset = utf-8
+
+# Indentation:
+[{*.ts,.js}]
+tab_width = 4
+indent_style = tab
+
+# Style:
+[{*.ts,.js}]
+insert_final_newline = true
+trim_trailing_whitespace = true
