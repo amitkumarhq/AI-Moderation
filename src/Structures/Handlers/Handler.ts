@@ -55,10 +55,7 @@ export class Handler {
             // Register Commands
             client.on('ready', async () => {
                 // PUBLIC Commands
-                client.guilds.cache.forEach(async (guild) => {
-                    client.application?.commands.set(CmdArray);
-
-                });
+                client.application?.commands.set(CmdArray);
 
                 // DEV Commands
                 client.config.DevGuilds.forEach(async (guild) => {
