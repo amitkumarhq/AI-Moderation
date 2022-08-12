@@ -3,7 +3,6 @@ export interface Config {
     Database: {
         MongoDB: string;
         Redis?: string;
-
     };
     OwnerIds?: object[];
     AdminIds?: object[];
@@ -12,17 +11,12 @@ export interface Config {
         {
             name: string;
             id: string;
-
         }
-
     ];
     APIs?: [
         {
             name: string;
             apiKey: string;
-
         }
-
     ];
-
 }

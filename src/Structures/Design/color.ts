@@ -25,7 +25,6 @@ export const color = {
         NAVY: '#34495E',
         DARK_NAVY: '#2C3E50',
         YELLOW: '#FFFF00',
-
     },
     Discord: {
         WHITE: '#FFFFFF',
@@ -38,15 +37,12 @@ export const color = {
         RED: '#ED4245',
         GREEN: '#57F287',
         YELLOW: '#FEE75C',
-
     },
     Material: {
         RED: '#FF5555',
         BLUE: '#55AAFF',
         YELLOW: '#FFAA55',
         GREEN: '#55FF55',
-        PINK: '#FF55FF',
-
+        PINK: '#FF55FF'
     },
-
 };

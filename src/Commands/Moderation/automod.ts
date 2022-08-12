@@ -9,6 +9,7 @@ const command: Command = {
         .setName('automod')
         .setDescription('AI Based Moderation System')
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+        .setDMPermission(false)
         .addSubcommandGroup((group) =>
             group
                 .setName('channel')

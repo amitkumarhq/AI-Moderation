@@ -7,7 +7,6 @@ const event: Event = {
     options: {
         ONCE: false,
         REST: false,
-
     },
 
     execute(interaction: CommandInteraction, client: BaseClient) {
@@ -24,15 +23,11 @@ const event: Event = {
                         .setDescription('This command is outdated.'),
                 ],
                 ephemeral: true,
-
             });
-
         }
 
         command.execute(interaction, client);
-
     },
-
 };
 
 export default event;
