@@ -23,11 +23,11 @@ changelog:
         - fixes
     - title: Documentation Changes
       labels:
-        - area: docs
+        - docs
         - documentation-release
     - title: Example Changes
       labels:
-        - area: examples
+        - examples
         - examples-release
     - title: Misc Changes
       labels:

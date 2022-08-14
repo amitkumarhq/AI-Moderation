@@ -232,375 +232,204 @@ const event: Event = {
 
             if (AvgScore > 0.75 && AvgScore <= 0.8) {
                 switch (PLow) {
-                    case 'delete':
-                        {
-                            await deleteMessageAction(msg, LogChannels, {
-                                embeds: [Embeds.Delete],
+                    case 'delete': {
+                        await deleteMessageAction(msg, LogChannels, {
+                            embeds: [Embeds.Delete],
+                            files: [attachment],
+                        });
+
+                        break;
+                    }
+
+                    case 'timeout': {
+                        timeoutAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Timeout], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Timeout.setTitle(
+                                        'You Have Been Timed Out!',
+                                    ).setDescription(
+                                        `${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
                                 files: [attachment],
-                            });
-                            // await msg.delete();
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Delete], files: [attachment] });
-                            // });
-                        }
                         break;
+                    }
 
-                    case 'timeout':
-                        {
-                            timeoutAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Timeout], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Timeout.setTitle(
-                                            'You Have Been Timed Out!',
-                                        ).setDescription(
-                                            `${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.timeout(ms('5m'), 'Toxicity Detected');
+                    case 'kick': {
+                        kickAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Kick], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Kick.setTitle('You Have Been Kicked!').setDescription(
+                                        `${author} You have been kicked from **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
+                                files: [attachment],
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Timeout], files: [attachment] });
-                            // });
-
-                            // await member?.send({
-                            //     embeds: [
-                            //         Embeds.Timeout
-                            //             .setTitle('You Have Been Timed Out!')
-                            //             .setDescription(`${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`),
-                            //     ],
-                            //     files: [attachment],
-                            // });
-                        }
                         break;
+                    }
 
-                    case 'kick':
-                        {
-                            kickAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Kick], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Kick.setTitle(
-                                            'You Have Been Kicked!',
-                                        ).setDescription(
-                                            `${author} You have been kicked from **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.kick('Toxicity Detected');
+                    case 'ban': {
+                        banAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Kick], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Ban.setTitle('You Have Been Banned!').setDescription(
+                                        `${author} You have been banned from **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
+                                files: [attachment],
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Kick], files: [attachment] });
-                            // });
-
-                            // await member?.send({
-                            //     embeds: [
-                            //         Embeds.Kick
-                            //             .setTitle('You Have Been Kicked!')
-                            //             .setDescription(`${author} You have been kicked from **${guild?.name}** for Toxic Messages!`),
-                            //     ],
-                            //     files: [attachment],
-                            // });
-                        }
                         break;
-
-                    case 'ban':
-                        {
-                            banAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Kick], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Ban.setTitle('You Have Been Banned!').setDescription(
-                                            `${author} You have been banned from **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.ban({ reason: 'Toxicity Detected' });
-
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-
-                            //     await channel.send({ embeds: [Embeds.Ban], files: [attachment] });
-
-                            //     await member?.send({
-                            //         embeds: [
-                            //             Embeds.Ban
-                            //                 .setTitle('You Have Been Banned!')
-                            //                 .setDescription(`${author} You have been banned from **${guild?.name}** for Toxic Messages!`),
-                            //         ],
-                            //         files: [attachment],
-                            //     });
-                            // });
-                        }
-                        break;
+                    }
                 }
             } else if (AvgScore > 0.8 && AvgScore <= 0.85) {
                 switch (PMed) {
-                    case 'delete':
-                        {
-                            await deleteMessageAction(msg, LogChannels, {
-                                embeds: [Embeds.Delete],
+                    case 'delete': {
+                        await deleteMessageAction(msg, LogChannels, {
+                            embeds: [Embeds.Delete],
+                            files: [attachment],
+                        });
+
+                        break;
+                    }
+
+                    case 'timeout': {
+                        timeoutAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Timeout], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Timeout.setTitle(
+                                        'You Have Been Timed Out!',
+                                    ).setDescription(
+                                        `${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
                                 files: [attachment],
-                            });
-                            // await msg.delete();
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Delete], files: [attachment] });
-                            // });
-                        }
                         break;
+                    }
 
-                    case 'timeout':
-                        {
-                            timeoutAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Timeout], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Timeout.setTitle(
-                                            'You Have Been Timed Out!',
-                                        ).setDescription(
-                                            `${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.timeout(ms('5m'), 'Toxicity Detected');
+                    case 'kick': {
+                        kickAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Kick], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Kick.setTitle('You Have Been Kicked!').setDescription(
+                                        `${author} You have been kicked from **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
+                                files: [attachment],
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Timeout], files: [attachment] });
-                            // });
-
-                            // await member?.send({
-                            //     embeds: [
-                            //         Embeds.Timeout
-                            //             .setTitle('You Have Been Timed Out!')
-                            //             .setDescription(`${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`),
-                            //     ],
-                            //     files: [attachment],
-                            // });
-                        }
                         break;
+                    }
 
-                    case 'kick':
-                        {
-                            kickAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Kick], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Kick.setTitle(
-                                            'You Have Been Kicked!',
-                                        ).setDescription(
-                                            `${author} You have been kicked from **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.kick('Toxicity Detected');
+                    case 'ban': {
+                        banAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Kick], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Ban.setTitle('You Have Been Banned!').setDescription(
+                                        `${author} You have been banned from **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
+                                files: [attachment],
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Kick], files: [attachment] });
-                            // });
-
-                            // await member?.send({
-                            //     embeds: [
-                            //         Embeds.Kick
-                            //             .setTitle('You Have Been Kicked!')
-                            //             .setDescription(`${author} You have been kicked from **${guild?.name}** for Toxic Messages!`),
-                            //     ],
-                            //     files: [attachment],
-                            // });
-                        }
                         break;
-
-                    case 'ban':
-                        {
-                            banAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Kick], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Ban.setTitle('You Have Been Banned!').setDescription(
-                                            `${author} You have been banned from **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.ban({ reason: 'Toxicity Detected' });
-
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-
-                            //     await channel.send({ embeds: [Embeds.Ban], files: [attachment] });
-
-                            //     await member?.send({
-                            //         embeds: [
-                            //             Embeds.Ban
-                            //                 .setTitle('You Have Been Banned!')
-                            //                 .setDescription(`${author} You have been banned from **${guild?.name}** for Toxic Messages!`),
-                            //         ],
-                            //         files: [attachment],
-                            //     });
-                            // });
-                        }
-                        break;
+                    }
                 }
             } else if (AvgScore > 0.85 && AvgScore >= 0.9) {
                 switch (PHigh) {
-                    case 'delete':
-                        {
-                            await deleteMessageAction(msg, LogChannels, {
-                                embeds: [Embeds.Delete],
+                    case 'delete': {
+                        await deleteMessageAction(msg, LogChannels, {
+                            embeds: [Embeds.Delete],
+                            files: [attachment],
+                        });
+
+                        break;
+                    }
+
+                    case 'timeout': {
+                        timeoutAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Timeout], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Timeout.setTitle(
+                                        'You Have Been Timed Out!',
+                                    ).setDescription(
+                                        `${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
                                 files: [attachment],
-                            });
-                            // await msg.delete();
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Delete], files: [attachment] });
-                            // });
-                        }
                         break;
+                    }
 
-                    case 'timeout':
-                        {
-                            timeoutAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Timeout], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Timeout.setTitle(
-                                            'You Have Been Timed Out!',
-                                        ).setDescription(
-                                            `${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.timeout(ms('5m'), 'Toxicity Detected');
+                    case 'kick': {
+                        kickAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Kick], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Kick.setTitle('You Have Been Kicked!').setDescription(
+                                        `${author} You have been kicked from **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
+                                files: [attachment],
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Timeout], files: [attachment] });
-                            // });
-
-                            // await member?.send({
-                            //     embeds: [
-                            //         Embeds.Timeout
-                            //             .setTitle('You Have Been Timed Out!')
-                            //             .setDescription(`${author} You are on a 5 minutes timeout in **${guild?.name}** for Toxic Messages!`),
-                            //     ],
-                            //     files: [attachment],
-                            // });
-                        }
                         break;
+                    }
 
-                    case 'kick':
-                        {
-                            kickAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Kick], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Kick.setTitle(
-                                            'You Have Been Kicked!',
-                                        ).setDescription(
-                                            `${author} You have been kicked from **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.kick('Toxicity Detected');
+                    case 'ban': {
+                        banAction(
+                            msg,
+                            LogChannels,
+                            { embeds: [Embeds.Kick], files: [attachment] },
+                            {
+                                embeds: [
+                                    Embeds.Ban.setTitle('You Have Been Banned!').setDescription(
+                                        `${author} You have been banned from **${guild?.name}** for Toxic Messages!`,
+                                    ),
+                                ],
+                                files: [attachment],
+                            },
+                        );
 
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-                            //     await channel.send({ embeds: [Embeds.Kick], files: [attachment] });
-                            // });
-
-                            // await member?.send({
-                            //     embeds: [
-                            //         Embeds.Kick
-                            //             .setTitle('You Have Been Kicked!')
-                            //             .setDescription(`${author} You have been kicked from **${guild?.name}** for Toxic Messages!`),
-                            //     ],
-                            //     files: [attachment],
-                            // });
-                        }
                         break;
-
-                    case 'ban':
-                        {
-                            banAction(
-                                msg,
-                                LogChannels,
-                                { embeds: [Embeds.Kick], files: [attachment] },
-                                {
-                                    embeds: [
-                                        Embeds.Ban.setTitle('You Have Been Banned!').setDescription(
-                                            `${author} You have been banned from **${guild?.name}** for Toxic Messages!`,
-                                        ),
-                                    ],
-                                    files: [attachment],
-                                },
-                            );
-                            // await msg.delete();
-                            // await member?.ban({ reason: 'Toxicity Detected' });
-
-                            // LogChannels.forEach(async (id) => {
-                            //     const channel = guild?.channels.cache.get(id) as TextChannel;
-
-                            //     await channel.send({ embeds: [Embeds.Ban], files: [attachment] });
-
-                            //     await member?.send({
-                            //         embeds: [
-                            //             Embeds.Ban
-                            //                 .setTitle('You Have Been Banned!')
-                            //                 .setDescription(`${author} You have been banned from **${guild?.name}** for Toxic Messages!`),
-                            //         ],
-                            //         files: [attachment],
-                            //     });
-                            // });
-                        }
-                        break;
+                    }
                 }
             }
         }

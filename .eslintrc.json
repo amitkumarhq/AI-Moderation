@@ -25,12 +25,11 @@
         "no-inner-declarations": "off",
         "no-var": "error",
         "no-unexpected-multiline": "error",
-
         // Prettier
         "prettier/prettier": [
-            "error", {
-                
-            }, {
+            "error",
+            {},
+            {
                 "usePrettierrc": true,
                 "endOfLine": "auto"
             }
