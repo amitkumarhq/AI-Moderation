@@ -11,12 +11,12 @@ export interface Config {
         {
             name: string;
             id: string;
-        }
+        },
     ];
     APIs?: [
         {
             name: string;
             apiKey: string;
-        }
+        },
     ];
 }

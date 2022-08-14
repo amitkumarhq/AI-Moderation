@@ -1,6 +1,6 @@
-import { Config } from './Structures/Interfaces/index.js';
+import { Config as IConfig } from './Structures/Interfaces/index.js';
 
-const Config: Config = {
+const Config: IConfig = {
     TOKEN: 'YOUR_TOKEN_HERE',
     Database: {
         MongoDB: 'MONGODB_URI_HERE',
@@ -28,7 +28,7 @@ const Config: Config = {
             name: 'Perspective API Key',
             apiKey: 'PERSPECTIVE_API_KEY_HERE',
         },
-    ]
+    ],
 };
 
 export default Config;

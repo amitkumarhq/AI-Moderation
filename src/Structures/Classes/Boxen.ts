@@ -1,5 +1,4 @@
 import boxen, { Options } from 'boxen';
-import chalk from 'chalk';
 
 interface ItemOptions {
     name: string;

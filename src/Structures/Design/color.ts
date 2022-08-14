@@ -43,6 +43,6 @@ export const color = {
         BLUE: '#55AAFF',
         YELLOW: '#FFAA55',
         GREEN: '#55FF55',
-        PINK: '#FF55FF'
+        PINK: '#FF55FF',
     },
 };

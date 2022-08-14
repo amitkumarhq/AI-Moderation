@@ -1,0 +1,8 @@
+# NPM Packages
+node_modules
+
+# Distribution
+**/dist/**
+
+# ESLint
+.eslintrc.json
