@@ -1,0 +1,34 @@
+changelog:
+  exclude:
+    labels:
+      - ignore-for-release
+  categories:
+    - title: Core Changes
+      labels:
+        - MAJOR
+        - core
+        - next
+        - breaking
+    - title: Enhancements
+      labels:
+        - MINOR
+        - enhancement
+    - title: Bug Fixes
+      labels:
+        - PATCH
+        - bug
+        - bugfix
+        - fix
+        - bugfixes
+        - fixes
+    - title: Documentation Changes
+      labels:
+        - area: docs
+        - documentation-release
+    - title: Example Changes
+      labels:
+        - area: examples
+        - examples-release
+    - title: Misc Changes
+      labels:
+        - "*"
