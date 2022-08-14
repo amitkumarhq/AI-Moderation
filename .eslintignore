@@ -1,0 +1,5 @@
+# NPM Packages
+node_modules
+
+# Distribution
+**/dist/**

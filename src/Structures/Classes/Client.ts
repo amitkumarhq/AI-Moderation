@@ -24,13 +24,11 @@ export class BaseClient extends Client {
         super({
             intents: [Guilds, GuildMembers, GuildMessages],
             partials: [User, Message, GuildMember, ThreadMember],
-
         });
 
         this.commands = new Collection();
         this.events = new Collection();
         this.config = ClientConfig;
-
     }
 
     public async start() {
@@ -39,7 +37,6 @@ export class BaseClient extends Client {
         await IBox.addItem(this.boxContents, {
             name: `${chalk.bold.hex('#5865F2')('Discord.js')}`,
             value: `v${version}\n`,
-
         });
 
         // Modules
@@ -54,56 +51,51 @@ export class BaseClient extends Client {
             dimBorder: true,
             padding: 1,
             margin: 1,
-
         });
-
     }
 
     private async registerModules() {
         const { loadEvents, loadCommands } = new Handler();
 
-        await loadEvents(this).then(() => {
+        try {
+            await loadEvents(this);
             IBox.addItem(this.boxContents, {
                 name: `${chalk.yellow('Events')}`,
-                value: 'OK',
-
+                value: `OK`,
             });
-
-        }).catch((err) => {
+        } catch (err) {
             IBox.addItem(this.boxContents, {
                 name: `${chalk.bold.red('Events')}`,
                 value: `${err}`,
-
             });
+        }
 
-        });
-
-        await loadCommands(this).then(() => {
+        try {
+            await loadCommands(this);
             IBox.addItem(this.boxContents, {
                 name: `${chalk.yellow('Commands')}`,
-                value: 'OK',
-
+                value: `OK`,
             });
-
-        }).catch((err) => {
+        } catch (err) {
             IBox.addItem(this.boxContents, {
                 name: `${chalk.red('Commands')}`,
                 value: `${err}`,
-
             });
-
-        });
-
+        }
     }
 
     private async connectMongoDB() {
-        await mongoose.connect(this.config.Database.MongoDB);
-        IBox.addItem(this.boxContents, {
-            name: `${chalk.yellow('Database')}`,
-            value: 'OK',
-
-        });
-
+        try {
+            await mongoose.connect(`${this.config.Database?.MongoDB}`);
+            IBox.addItem(this.boxContents, {
+                name: `${chalk.yellow('Database')}`,
+                value: `OK`,
+            });
+        } catch (err) {
+            IBox.addItem(this.boxContents, {
+                name: `${chalk.red('Database')}`,
+                value: `${err}`,
+            });
+        }
     }
-
 }

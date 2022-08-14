@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 export default model(
-    'ModerationDB', new Schema({
+    'ModerationDB',
+    new Schema({
         GuildID: String,
         UserID: String,
         ChannelIDs: Array,
@@ -15,7 +16,5 @@ export default model(
         LogChannelIDs: Array,
         BypassUsers: Array,
         BypassRoles: Array,
-
-    })
-
+    }),
 );

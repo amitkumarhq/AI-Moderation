@@ -7,7 +7,6 @@ const event: Event = {
     name: 'ready',
     options: {
         ONCE: true,
-
     },
 
     execute: async (client: Client) => {
@@ -17,14 +16,10 @@ const event: Event = {
                     name: `github.com/AmitKumarHQ`,
                     type: Watching,
                 },
-
             ],
             status: 'online',
-
         });
-
     },
-
 };
 
 export default event;
